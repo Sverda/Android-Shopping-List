@@ -16,11 +16,13 @@
             android:layout_height="200px"
             android:text="Go to list"
             android:layout_marginBottom="40px"
+            android:onClick="goToList"
             />
         <Button
             android:layout_width="match_parent"
             android:layout_height="200px"
             android:text="Go to settings"
+            android:onClick="goToSettings"
             />
     </LinearLayout>
 
