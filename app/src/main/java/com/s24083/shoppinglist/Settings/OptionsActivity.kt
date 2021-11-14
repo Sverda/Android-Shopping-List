@@ -13,7 +13,7 @@ class OptionsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_options)
 
-        val sp = this.getPreferences(MODE_PRIVATE)
+        val sp = this.getSharedPreferences("1", MODE_PRIVATE)
 
         val detailsKey = resources.getString(R.string.settingsShowDetails)
         val detailsValue = sp.getBoolean(detailsKey, false)
@@ -25,7 +25,7 @@ class OptionsActivity : AppCompatActivity() {
     }
 
     fun saveSettings(view: View){
-        val sp = this.getPreferences(MODE_PRIVATE)
+        val sp = this.getSharedPreferences("1", MODE_PRIVATE)
 
         val detailsKey = resources.getString(R.string.settingsShowDetails)
         val detailsValue = findViewById<Switch>(R.id.show_details).isChecked

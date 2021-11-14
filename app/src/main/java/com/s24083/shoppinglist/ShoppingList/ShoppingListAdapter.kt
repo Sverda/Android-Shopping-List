@@ -1,17 +1,20 @@
 package com.s24083.shoppinglist.ShoppingList
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.Switch
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.s24083.shoppinglist.R
 import com.s24083.shoppinglist.entities.ShoppingItem
 
-class ShoppingListAdapter() :
+class ShoppingListAdapter(val context : Context) :
     ListAdapter<ShoppingItem, ShoppingListAdapter.ShoppingListViewHolder>(ShoppingListDiffCallback) {
 
     inner class ShoppingListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -29,6 +32,20 @@ class ShoppingListAdapter() :
             amountTextView.text = "${item.amount}, "
             priceTextView.text = "${item.price}$ "
             isBoughtCheckBoxView.isChecked = item.isBought
+
+            val sp = context.getSharedPreferences("1", AppCompatActivity.MODE_PRIVATE)
+            val detailsKey = itemView.resources.getString(R.string.settingsShowDetails)
+            val detailsValue = sp.getBoolean(detailsKey, false)
+            if (!detailsValue){
+                amountTextView.visibility = View.GONE
+                priceTextView.visibility = View.GONE
+            }
+
+            val sizeKey = itemView.resources.getString(R.string.settingsTitleFontSize)
+            val sizeValue = sp.getFloat(sizeKey, 1.0f)
+            if (sizeValue != 1.0f){
+                nameTextView.textSize *= sizeValue
+            }
         }
     }
 

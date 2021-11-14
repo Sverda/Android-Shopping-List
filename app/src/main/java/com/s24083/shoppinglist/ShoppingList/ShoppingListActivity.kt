@@ -36,7 +36,7 @@ class ShoppingListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_shopping_list)
 
         val recyclerView: RecyclerView = findViewById(R.id.list)
-        val adapter = ShoppingListAdapter()
+        val adapter = ShoppingListAdapter(this)
         recyclerView.adapter = adapter
 
         shoppingListViewModel.allItems.observe(
