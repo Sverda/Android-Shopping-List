@@ -1,8 +1,6 @@
 package com.s24083.shoppinglist.repositories
 
-import androidx.lifecycle.LiveData
 import com.s24083.shoppinglist.entities.ShoppingItem
-import androidx.lifecycle.MutableLiveData
 
 
 class ShoppingItemRepository {
@@ -14,11 +12,9 @@ class ShoppingItemRepository {
         list.add(ShoppingItem(2, "Item 3", 33, 30.99, false))
     }
 
-    val allItems: LiveData<List<ShoppingItem>>
+    val allItems: MutableList<ShoppingItem>
         get() {
-            val mList = MutableLiveData<List<ShoppingItem>>()
-            mList.value = list
-            return mList
+            return list
         }
 
     fun insert(item: ShoppingItem) = list.add(item)
