@@ -9,7 +9,7 @@ class ShoppingItemRepository {
     init {
         list.add(ShoppingItem(0, "Item 1", 11, 10.99, false))
         list.add(ShoppingItem(1, "Item 2", 22, 20.99, false))
-        list.add(ShoppingItem(2, "Item 3", 33, 30.99, false))
+        list.add(ShoppingItem(2, "Item 3", 33, 30.99, true))
     }
 
     val allItems: MutableList<ShoppingItem>

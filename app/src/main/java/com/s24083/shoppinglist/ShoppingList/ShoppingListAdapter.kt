@@ -25,9 +25,9 @@ class ShoppingListAdapter() :
         fun bind(item: ShoppingItem) {
             currentShoppingItem = item
 
-            nameTextView.text = item.name
-            priceTextView.text = item.price.toString()
-            amountTextView.text = item.amount.toString()
+            nameTextView.text = "${item.name}, "
+            amountTextView.text = "${item.amount}, "
+            priceTextView.text = "${item.price}$ "
             isBoughtCheckBoxView.isChecked = item.isBought
         }
     }
