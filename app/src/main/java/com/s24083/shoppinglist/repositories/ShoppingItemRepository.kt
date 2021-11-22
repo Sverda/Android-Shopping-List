@@ -3,7 +3,7 @@ package com.s24083.shoppinglist.repositories
 import com.s24083.shoppinglist.entities.ShoppingItem
 
 
-class ShoppingItemRepository {
+object ShoppingItemRepository {
     private val list: MutableList<ShoppingItem> = mutableListOf()
 
     init {
@@ -18,9 +18,9 @@ class ShoppingItemRepository {
         }
 
     fun insert(item: ShoppingItem) = list.add(item)
-    fun update(item: ShoppingItem) {
-        list.removeIf(){ value -> value.id == item.id}
-        list.add(0, item)
+    fun update(modifiedItem: ShoppingItem) {
+        val currentItem = list.first { value -> value.id == modifiedItem.id }
+        currentItem.update(modifiedItem)
     }
     fun delete(item: ShoppingItem) = list.removeIf(){ value -> value.id == item.id}
     fun deleteAll() = list.removeAll(list)

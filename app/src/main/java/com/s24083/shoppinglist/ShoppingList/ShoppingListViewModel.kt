@@ -17,7 +17,7 @@ class ShoppingListViewModel(private val repository: ShoppingItemRepository)
     }
     fun update(item: ShoppingItem){
         repository.update(item)
-        allItems.postValue(repository.allItems)
+//        allItems.postValue(repository.allItems)
     }
     fun delete(item: ShoppingItem){
         repository.delete(item)
@@ -31,7 +31,7 @@ class ShoppingListViewModelFactory(private val context: Context) : ViewModelProv
         if (modelClass.isAssignableFrom(ShoppingListViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
             return ShoppingListViewModel(
-                ShoppingItemRepository()
+                ShoppingItemRepository
             ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")

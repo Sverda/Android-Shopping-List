@@ -14,7 +14,7 @@ import com.s24083.shoppinglist.entities.ShoppingItem
 
 class ShoppingListActivity : AppCompatActivity() {
 
-    var recyclerView: RecyclerView? = null
+    private var recyclerView: RecyclerView? = null
     private val shoppingListViewModel by viewModels<ShoppingListViewModel> {
         ShoppingListViewModelFactory(this)
     }
@@ -23,12 +23,27 @@ class ShoppingListActivity : AppCompatActivity() {
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
 
             if (result.resultCode == Activity.RESULT_OK) {
+                val existingId = result.data?.getIntExtra("id", -1)
                 val name = result.data?.getStringExtra("name")
-                var price = result.data?.getDoubleExtra("price", 0.0)
+                val price = result.data?.getDoubleExtra("price", 0.0)
                 val amount = result.data?.getIntExtra("amount", 0)
-                val maxId = shoppingListViewModel.allItems.value?.maxByOrNull { i -> i.id }?.id ?: 0
-                val item = ShoppingItem(maxId + 1 , name ?: "", amount ?: 0, price ?: 0.0, false)
-                shoppingListViewModel.insert(item)
+                if (existingId == -1) {
+                    val maxId = shoppingListViewModel.allItems.value?.maxByOrNull { i -> i.id }?.id ?: 0
+                    val item = ShoppingItem(maxId + 1 , name ?: "", amount ?: 0, price ?: 0.0, false)
+                    shoppingListViewModel.insert(item)
+                }
+                else {
+                    val isBought = result.data?.getBooleanExtra("isBought", false)
+                    val item = ShoppingItem(
+                        existingId ?: throw Exception("invalid id") ,
+                        name ?: "",
+                        amount ?: 0,
+                        price ?: 0.0,
+                        isBought ?: false)
+                    shoppingListViewModel.update(item)
+                    recyclerView?.recycledViewPool?.clear()
+                    recyclerView?.adapter?.notifyItemChanged(item.id)
+                }
             }
         }
 
@@ -52,7 +67,9 @@ class ShoppingListActivity : AppCompatActivity() {
     }
 
     private fun onItemEdit(item: ShoppingItem) {
-        shoppingListViewModel.update(item)
+        val intent = Intent(this, AddShoppingItemActivity::class.java)
+        intent.putExtra("id", item.id)
+        intentLauncher.launch(intent)
     }
 
     private fun onItemDelete(item: ShoppingItem) {
