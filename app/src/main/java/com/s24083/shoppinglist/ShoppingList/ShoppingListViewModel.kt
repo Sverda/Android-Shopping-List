@@ -21,7 +21,7 @@ class ShoppingListViewModel(private val repository: ShoppingItemRepository)
     }
     fun delete(item: ShoppingItem){
         repository.delete(item)
-        allItems.postValue(repository.allItems)
+//        allItems.postValue(repository.allItems)
     }
 }
 

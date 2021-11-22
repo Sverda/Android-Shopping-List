@@ -14,6 +14,7 @@ import com.s24083.shoppinglist.entities.ShoppingItem
 
 class ShoppingListActivity : AppCompatActivity() {
 
+    var recyclerView: RecyclerView? = null
     private val shoppingListViewModel by viewModels<ShoppingListViewModel> {
         ShoppingListViewModelFactory(this)
     }
@@ -35,9 +36,9 @@ class ShoppingListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shopping_list)
 
-        val recyclerView: RecyclerView = findViewById(R.id.list)
-        val adapter = ShoppingListAdapter(this)
-        recyclerView.adapter = adapter
+        recyclerView = findViewById(R.id.list)
+        val adapter = ShoppingListAdapter(this, {item -> onItemEdit(item)},{ item -> onItemDelete(item)})
+        recyclerView?.adapter = adapter
 
         shoppingListViewModel.allItems.observe(
             this,
@@ -48,6 +49,16 @@ class ShoppingListActivity : AppCompatActivity() {
                 }
             }
         )
+    }
+
+    private fun onItemEdit(item: ShoppingItem) {
+        shoppingListViewModel.update(item)
+    }
+
+    private fun onItemDelete(item: ShoppingItem) {
+        shoppingListViewModel.delete(item)
+        recyclerView?.recycledViewPool?.clear()
+        recyclerView?.adapter?.notifyItemRemoved(item.id)
     }
 
     fun fabOnClick(view: android.view.View) {
