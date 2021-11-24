@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import androidx.activity.viewModels
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.s24083.shoppinglist.R
 
@@ -27,7 +28,7 @@ class AddShoppingItemActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_shopping_item)
 
-        findViewById<Button>(R.id.done_button).setOnClickListener {
+        findViewById<MaterialButton>(R.id.done_button).setOnClickListener {
             addShoppingItem()
         }
         addItemName = findViewById(R.id.add_item_name)
