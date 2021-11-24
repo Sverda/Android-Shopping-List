@@ -4,9 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -28,16 +26,16 @@ class ShoppingListAdapter(val context : Context,
         private val priceTextView: TextView = itemView.findViewById(R.id.item_price)
         private val amountTextView: TextView = itemView.findViewById(R.id.item_amount)
         private val isBoughtCheckBoxView: CheckBox = itemView.findViewById(R.id.item_isBought)
-        private val editButton: Button = itemView.findViewById(R.id.item_edit)
-        private val deleteButton: Button = itemView.findViewById(R.id.item_delete)
+        private val editButton: ImageButton = itemView.findViewById(R.id.item_edit)
+        private val deleteButton: ImageButton = itemView.findViewById(R.id.item_delete)
         private var currentShoppingItem: ShoppingItem? = null
 
         /* Bind item properties. */
         fun bind(item: ShoppingItem) {
             currentShoppingItem = item
 
-            nameTextView.text = "${item.name}, "
-            amountTextView.text = "${item.amount}, "
+            nameTextView.text = "${item.name}"
+            amountTextView.text = "x${item.amount}"
             priceTextView.text = "${item.price}$ "
             isBoughtCheckBoxView.isChecked = item.isBought
 
