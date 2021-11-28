@@ -10,21 +10,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShoppingList">
         <activity
-            android:name=".addShoppingItem.AddShoppingItemActivity"
-            android:exported="false" />
-        <activity
-            android:name=".Settings.OptionsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ShoppingList.ShoppingListActivity"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Settings.OptionsActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".ShoppingList.ShoppingListActivity"
+            android:exported="false"
+            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".addShoppingItem.AddShoppingItemActivity"
+            android:exported="true"
+            android:parentActivityName=".ShoppingList.ShoppingListActivity">
+            <intent-filter>
+                <action android:name="com.s24083.shoppinglist.ITEM_ADDED_RESPONSE" />
             </intent-filter>
         </activity>
     </application>

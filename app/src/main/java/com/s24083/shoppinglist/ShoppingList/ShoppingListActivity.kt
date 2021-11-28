@@ -1,6 +1,7 @@
 package com.s24083.shoppinglist.ShoppingList
 
 import android.app.Activity
+import android.app.PendingIntent
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
@@ -70,7 +71,7 @@ class ShoppingListActivity : AppCompatActivity() {
 
         val receiver = AddItemBroadcastReceiver()
         val filter = IntentFilter()
-        filter.addAction("com.s24083.shoppinglist.ITEM_ADDED")
+        filter.addAction("com.s24083.shoppinglist.ITEM_ADDED_RESPONSE")
         registerReceiver(receiver, filter)
     }
 
