@@ -1,6 +1,7 @@
 package com.s24083.shoppinglist.addShoppingItem
 
 import android.app.Activity
+import android.content.ComponentName
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -57,7 +58,6 @@ class AddShoppingItemActivity : AppCompatActivity() {
             resultIntent.putExtra("amount", amount)
             if (currentShoppingItemId == null){
                 resultIntent.putExtra("isBought", false)
-                broadcastItemCreation(name)
             }
             else {
                 val currentItem = viewModel.getItemForId(currentShoppingItemId!!)
@@ -66,13 +66,5 @@ class AddShoppingItemActivity : AppCompatActivity() {
             setResult(Activity.RESULT_OK, resultIntent)
         }
         finish()
-    }
-
-    private fun broadcastItemCreation(name: String){
-        Intent().also { intent ->
-            intent.setAction("com.s24083.shoppingItem.ITEM_ADDED")
-            intent.putExtra("name", name)
-            sendBroadcast(intent)
-        }
     }
 }

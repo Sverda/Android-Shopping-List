@@ -2,6 +2,7 @@ package com.s24083.shoppinglist.ShoppingList
 
 import android.app.Activity
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.s24083.shoppinglist.R
 import com.s24083.shoppinglist.addShoppingItem.AddShoppingItemActivity
 import com.s24083.shoppinglist.entities.ShoppingItem
+import com.s24083.shoppinglist.receivers.AddItemBroadcastReceiver
 
 
 class ShoppingListActivity : AppCompatActivity() {
@@ -31,6 +33,7 @@ class ShoppingListActivity : AppCompatActivity() {
                     val maxId = shoppingListViewModel.allItems.value?.maxByOrNull { i -> i.id }?.id ?: 0
                     val item = ShoppingItem(maxId + 1 , name ?: "", amount ?: 0, price ?: 0.0, false)
                     shoppingListViewModel.insert(item)
+                    broadcastItemCreation(item)
                 }
                 else {
                     val isBought = result.data?.getBooleanExtra("isBought", false)
@@ -64,6 +67,11 @@ class ShoppingListActivity : AppCompatActivity() {
                 }
             }
         )
+
+        val receiver = AddItemBroadcastReceiver()
+        val filter = IntentFilter()
+        filter.addAction("com.s24083.shoppinglist.ITEM_ADDED")
+        registerReceiver(receiver, filter)
     }
 
     private fun onItemEdit(item: ShoppingItem) {
@@ -81,5 +89,13 @@ class ShoppingListActivity : AppCompatActivity() {
     fun fabOnClick(view: android.view.View) {
         val intent = Intent(this, AddShoppingItemActivity::class.java)
         intentLauncher.launch(intent)
+    }
+
+    fun broadcastItemCreation(item: ShoppingItem){
+        Intent("com.s24083.shoppinglist.ITEM_ADDED").also { intent ->
+            intent.putExtra("id", item.id)
+            intent.putExtra("name", item.name)
+            sendBroadcast(intent)
+        }
     }
 }
