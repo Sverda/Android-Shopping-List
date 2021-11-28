@@ -12,6 +12,6 @@ class AddItemBroadcastReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
         val action = intent?.action
         val itemName = intent?.getStringExtra("name")
-        Toast.makeText(context, "$itemName item was added", Toast.LENGTH_LONG).show()
+//        Toast.makeText(context, "$itemName item was added", Toast.LENGTH_LONG).show()
     }
 }
