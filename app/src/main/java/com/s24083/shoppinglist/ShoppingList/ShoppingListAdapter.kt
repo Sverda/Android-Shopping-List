@@ -2,8 +2,11 @@ package com.s24083.shoppinglist.ShoppingList
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DiffUtil
@@ -28,6 +31,8 @@ class ShoppingListAdapter(val context : Context,
         private val isBoughtCheckBoxView: CheckBox = itemView.findViewById(R.id.item_isBought)
         private val editButton: ImageButton = itemView.findViewById(R.id.item_edit)
         private val deleteButton: ImageButton = itemView.findViewById(R.id.item_delete)
+        private val scaleUp: Animation = AnimationUtils.loadAnimation(context, R.anim.scale_up)
+        private val scaleDown: Animation = AnimationUtils.loadAnimation(context, R.anim.scale_down)
         private var currentShoppingItem: ShoppingItem? = null
 
         /* Bind item properties. */
@@ -53,10 +58,31 @@ class ShoppingListAdapter(val context : Context,
                 nameTextView.textSize *= sizeValue
             }
 
+            editButton.setOnTouchListener { v, event ->
+                when (event?.action) {
+                    MotionEvent.ACTION_DOWN -> editButton.startAnimation(scaleUp)
+                    MotionEvent.ACTION_UP -> {
+                        editButton.startAnimation(scaleDown)
+                    }
+                }
+
+                v?.onTouchEvent(event) ?: true
+            }
             editButton.setOnClickListener {
                 currentShoppingItem?.let {
                     onEdit(it)
                 }
+            }
+
+            deleteButton.setOnTouchListener { v, event ->
+                when (event?.action) {
+                    MotionEvent.ACTION_DOWN -> deleteButton.startAnimation(scaleUp)
+                    MotionEvent.ACTION_UP -> {
+                        deleteButton.startAnimation(scaleDown)
+                    }
+                }
+
+                v?.onTouchEvent(event) ?: true
             }
             deleteButton.setOnClickListener{
                 currentShoppingItem?.let {
