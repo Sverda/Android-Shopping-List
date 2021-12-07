@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.s24083.shoppinglist.entities.ShoppingItem
-import com.s24083.shoppinglist.repositories.ShoppingItemRepository
+import com.s24083.shoppinglist.repositories.ShoppingListFirebaseRepository
 
-class AddShoppingItemViewModel(private val repository: ShoppingItemRepository)
+class AddShoppingItemViewModel(private val repository: ShoppingListFirebaseRepository)
     : ViewModel() {
 
     fun getItemForId(id: Int) : ShoppingItem {
@@ -20,7 +20,7 @@ class AddShoppingItemViewModelFactory(private val context: Context) : ViewModelP
         if (modelClass.isAssignableFrom(AddShoppingItemViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
             return AddShoppingItemViewModel(
-                ShoppingItemRepository
+                ShoppingListFirebaseRepository()
             ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")

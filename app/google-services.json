@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "290207681057",
+    "project_id": "shoppinglist-40cf1",
+    "storage_bucket": "shoppinglist-40cf1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:290207681057:android:49035b228e2a4422733160",
+        "android_client_info": {
+          "package_name": "com.s24083.shoppinglist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "290207681057-me4f4suk54vusfom1uk9vn30pgpgcblr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqSpXJ_5I9mVGBgMMPuh2qZFpWuwW2UK8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "290207681057-me4f4suk54vusfom1uk9vn30pgpgcblr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -3,7 +3,7 @@ package com.s24083.shoppinglist.repositories
 import com.s24083.shoppinglist.entities.ShoppingItem
 
 
-object ShoppingItemRepository {
+object ShoppingListInMemoryRepository {
     private val list: MutableList<ShoppingItem> = mutableListOf()
 
     init {
