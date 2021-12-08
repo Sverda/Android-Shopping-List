@@ -9,11 +9,11 @@ import com.s24083.shoppinglist.repositories.ShoppingListFirebaseRepository
 
 class ShoppingListViewModel(private val repository: ShoppingListFirebaseRepository)
     : ViewModel() {
-    val allItems: MutableLiveData<MutableList<ShoppingItem>> = MutableLiveData(repository.allItems)
+    val allItems: MutableLiveData<MutableList<ShoppingItem>> = repository.getItems()
 
     fun insert(item: ShoppingItem){
         repository.insert(item)
-        allItems.postValue(repository.allItems)
+//        allItems.postValue(repository.getItems())
     }
     fun update(item: ShoppingItem){
         repository.update(item)
@@ -31,7 +31,7 @@ class ShoppingListViewModelFactory(private val context: Context) : ViewModelProv
         if (modelClass.isAssignableFrom(ShoppingListViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
             return ShoppingListViewModel(
-                ShoppingListFirebaseRepository()
+                ShoppingListFirebaseRepository.getInstance()
             ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")

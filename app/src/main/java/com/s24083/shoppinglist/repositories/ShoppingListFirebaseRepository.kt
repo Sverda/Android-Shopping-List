@@ -1,34 +1,46 @@
 package com.s24083.shoppinglist.repositories
 
+import androidx.lifecycle.MutableLiveData
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.getValue
 import com.s24083.shoppinglist.entities.ShoppingItem
 
 
 class ShoppingListFirebaseRepository {
-    private val list: MutableList<ShoppingItem> = mutableListOf()
+    companion object{
+        private var instance: ShoppingListFirebaseRepository? = null
+
+        fun getInstance(): ShoppingListFirebaseRepository {
+            if (instance == null){
+                instance = ShoppingListFirebaseRepository()
+            }
+            return instance as ShoppingListFirebaseRepository
+        }
+    }
+
     private var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance("https://shoppinglist-40cf1-default-rtdb.europe-west1.firebasedatabase.app")
     private var dbRef: DatabaseReference = firebaseDatabase.reference.child("shoppingItems")
 
-    init {
-        dbRef.child("shoppingItems").get().addOnSuccessListener  {
-            val item = it.getValue<ShoppingItem>()
-            if (item != null) {
-                list.add(item)
+    fun getItems(): MutableLiveData<MutableList<ShoppingItem>>
+    {
+        val liveData = MutableLiveData<MutableList<ShoppingItem>>()
+        val listener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val tempList = mutableListOf<ShoppingItem>()
+                dataSnapshot?.children?.forEach{
+                    tempList.add(it?.getValue<ShoppingItem>() ?: ShoppingItem())
+                }
+                liveData.postValue(tempList)
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
             }
         }
+        dbRef.addValueEventListener(listener)
+        return liveData
     }
-
-    val allItems: MutableList<ShoppingItem>
-        get() {
-            return list
-        }
 
     fun insert(item: ShoppingItem) = dbRef.child(item.id.toString()).setValue(item)
-    fun update(modifiedItem: ShoppingItem) {
-        val currentItem = list.first { value -> value.id == modifiedItem.id }
-        currentItem.update(modifiedItem)
-    }
-    fun delete(item: ShoppingItem) = list.removeIf(){ value -> value.id == item.id}
-    fun deleteAll() = list.removeAll(list)
+    fun update(item: ShoppingItem) = dbRef.child(item.id.toString()).setValue(item)
+    fun delete(item: ShoppingItem) = dbRef.child(item.id.toString()).removeValue()
 }

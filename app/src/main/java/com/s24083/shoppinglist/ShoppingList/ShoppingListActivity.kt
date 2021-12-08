@@ -59,15 +59,17 @@ class ShoppingListActivity : AppCompatActivity() {
         val adapter = ShoppingListAdapter(this, {item -> onItemEdit(item)},{ item -> onItemDelete(item)})
         recyclerView?.adapter = adapter
 
-        shoppingListViewModel.allItems.observe(
-            this,
-            {
-                it?.let {
-                    adapter.submitList(null)
-                    adapter.submitList(it)
+        run {
+            shoppingListViewModel.allItems.observe(
+                this,
+                {
+                    it?.let {
+                        adapter.submitList(null)
+                        adapter.submitList(it)
+                    }
                 }
-            }
-        )
+            )
+        }
 
         val receiver = AddItemBroadcastReceiver()
         val filter = IntentFilter()
