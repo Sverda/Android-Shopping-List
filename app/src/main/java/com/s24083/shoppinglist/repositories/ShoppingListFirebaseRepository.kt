@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.getValue
 import com.s24083.shoppinglist.entities.ShoppingItem
+import kotlinx.coroutines.*
+import kotlinx.coroutines.tasks.await
 
 
 class ShoppingListFirebaseRepository {
@@ -20,6 +22,11 @@ class ShoppingListFirebaseRepository {
 
     private var firebaseDatabase: FirebaseDatabase = FirebaseDatabase.getInstance("https://shoppinglist-40cf1-default-rtdb.europe-west1.firebasedatabase.app")
     private var dbRef: DatabaseReference = firebaseDatabase.reference.child("shoppingItems")
+
+    suspend fun getItem(id: Int) : ShoppingItem? {
+        val itemSnapshot = dbRef.child(id.toString()).get().await()
+        return itemSnapshot.getValue<ShoppingItem>()
+    }
 
     fun getItems(): MutableLiveData<MutableList<ShoppingItem>>
     {

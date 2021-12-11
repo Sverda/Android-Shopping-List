@@ -1,19 +1,20 @@
 package com.s24083.shoppinglist.addShoppingItem
 
 import android.app.Activity
-import android.content.ComponentName
+import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.AttributeSet
+import android.view.View
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 import com.s24083.shoppinglist.R
+import com.s24083.shoppinglist.databinding.ActivityAddShoppingItemBinding
 
 class AddShoppingItemActivity : AppCompatActivity() {
-    private lateinit var addItemName : TextInputEditText
-    private lateinit var addItemPrice : TextInputEditText
-    private lateinit var addItemAmount : TextInputEditText
+    private lateinit var binding: ActivityAddShoppingItemBinding
 
     private val currentShoppingItemId: Int? get() {
         val bundle: Bundle? = intent.extras
@@ -21,50 +22,48 @@ class AddShoppingItemActivity : AppCompatActivity() {
     }
 
     private val viewModel by viewModels<AddShoppingItemViewModel>{
-        AddShoppingItemViewModelFactory(this)
+        AddShoppingItemViewModelFactory(this, currentShoppingItemId)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_add_shopping_item)
+        binding = ActivityAddShoppingItemBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
+        binding.vm = viewModel
+        binding.lifecycleOwner = this
 
-        findViewById<MaterialButton>(R.id.done_button).setOnClickListener {
-            addShoppingItem()
-        }
-        addItemName = findViewById(R.id.add_item_name)
-        addItemPrice = findViewById(R.id.add_item_price)
-        addItemAmount = findViewById(R.id.add_item_amount)
-
-        currentShoppingItemId?.let {
-            val currentItem = viewModel.getItemForId(currentShoppingItemId!!)
-            addItemName.setText(currentItem.name)
-            addItemPrice.setText(currentItem.price.toString())
-            addItemAmount.setText(currentItem.amount.toString())
+        binding.doneButton.setOnClickListener {
+            addOrUpdateShoppingItem()
         }
     }
 
-    private fun addShoppingItem() {
+    private fun addOrUpdateShoppingItem() {
         val resultIntent = Intent()
-
-        if (addItemName.text.isNullOrEmpty() || addItemPrice.text.isNullOrEmpty() || addItemAmount.text.isNullOrEmpty()) {
+        if (validate()) {
             setResult(Activity.RESULT_CANCELED, resultIntent)
-        } else {
-            val name = addItemName.text.toString()
-            val price = addItemPrice.text.toString().toDouble()
-            val amount = addItemAmount.text.toString().toInt()
-            resultIntent.putExtra("id", currentShoppingItemId)
-            resultIntent.putExtra("name", name)
-            resultIntent.putExtra("price", price)
-            resultIntent.putExtra("amount", amount)
-            if (currentShoppingItemId == null){
-                resultIntent.putExtra("isBought", false)
-            }
-            else {
-                val currentItem = viewModel.getItemForId(currentShoppingItemId!!)
-                resultIntent.putExtra("isBought", currentItem.isBought)
-            }
-            setResult(Activity.RESULT_OK, resultIntent)
+            finish()
         }
+
+        val name = binding.addItemName.text.toString()
+        val price = binding.addItemPrice.text.toString().toDouble()
+        val amount = binding.addItemAmount.text.toString().toInt()
+        resultIntent.putExtra("id", currentShoppingItemId)
+        resultIntent.putExtra("name", name)
+        resultIntent.putExtra("price", price)
+        resultIntent.putExtra("amount", amount)
+        if (currentShoppingItemId == null){
+            resultIntent.putExtra("isBought", false)
+        } else {
+            resultIntent.putExtra("isBought", false)
+        }
+        setResult(Activity.RESULT_OK, resultIntent)
         finish()
+    }
+
+    private fun validate() : Boolean {
+        return binding.addItemName.text.isNullOrEmpty()
+                || binding.addItemPrice.text.isNullOrEmpty()
+                || binding.addItemAmount.text.isNullOrEmpty();
     }
 }
