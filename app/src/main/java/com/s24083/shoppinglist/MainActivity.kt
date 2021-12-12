@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun goToList(view: View){
-        var intent = Intent(this, ShoppingListActivity::class.java)
+        val intent = Intent(this, ShoppingListActivity::class.java)
         startActivity(intent)
     }
 

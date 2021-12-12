@@ -4,8 +4,8 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.s24083.shoppinglist.entities.ShoppingItem
-import com.s24083.shoppinglist.repositories.ShoppingListRepository
+import com.s24083.shoppinglist.data.model.ShoppingItem
+import com.s24083.shoppinglist.data.ShoppingListRepository
 
 class ShoppingListViewModel(private val repository: ShoppingListRepository)
     : ViewModel() {

@@ -2,7 +2,7 @@ package com.s24083.shoppinglist.addShoppingItem
 
 import android.content.Context
 import androidx.lifecycle.*
-import com.s24083.shoppinglist.repositories.ShoppingListRepository
+import com.s24083.shoppinglist.data.ShoppingListRepository
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 

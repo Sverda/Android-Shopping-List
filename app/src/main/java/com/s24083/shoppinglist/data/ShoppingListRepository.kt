@@ -1,9 +1,9 @@
-package com.s24083.shoppinglist.repositories
+package com.s24083.shoppinglist.data
 
 import androidx.lifecycle.MutableLiveData
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.getValue
-import com.s24083.shoppinglist.entities.ShoppingItem
+import com.s24083.shoppinglist.data.model.ShoppingItem
 import kotlinx.coroutines.tasks.await
 
 

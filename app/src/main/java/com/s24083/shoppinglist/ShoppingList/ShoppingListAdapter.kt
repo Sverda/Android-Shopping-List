@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.s24083.shoppinglist.R
-import com.s24083.shoppinglist.entities.ShoppingItem
+import com.s24083.shoppinglist.data.model.ShoppingItem
 
 class ShoppingListAdapter(val context : Context,
                           private val onEdit: (ShoppingItem) -> Unit,

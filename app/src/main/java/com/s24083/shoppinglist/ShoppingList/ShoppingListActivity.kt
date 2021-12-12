@@ -1,7 +1,6 @@
 package com.s24083.shoppinglist.ShoppingList
 
 import android.app.Activity
-import android.app.PendingIntent
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
@@ -11,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.s24083.shoppinglist.R
 import com.s24083.shoppinglist.addShoppingItem.AddShoppingItemActivity
-import com.s24083.shoppinglist.entities.ShoppingItem
+import com.s24083.shoppinglist.data.model.ShoppingItem
 import com.s24083.shoppinglist.receivers.AddItemBroadcastReceiver
 
 

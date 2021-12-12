@@ -1,4 +1,4 @@
-package com.s24083.shoppinglist.entities
+package com.s24083.shoppinglist.data.model
 
 import com.google.firebase.database.IgnoreExtraProperties
 
