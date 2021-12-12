@@ -4,19 +4,18 @@ import androidx.lifecycle.MutableLiveData
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.getValue
 import com.s24083.shoppinglist.entities.ShoppingItem
-import kotlinx.coroutines.*
 import kotlinx.coroutines.tasks.await
 
 
-class ShoppingListFirebaseRepository {
+class ShoppingListRepository {
     companion object{
-        private var instance: ShoppingListFirebaseRepository? = null
+        private var instance: ShoppingListRepository? = null
 
-        fun getInstance(): ShoppingListFirebaseRepository {
+        fun getInstance(): ShoppingListRepository {
             if (instance == null){
-                instance = ShoppingListFirebaseRepository()
+                instance = ShoppingListRepository()
             }
-            return instance as ShoppingListFirebaseRepository
+            return instance as ShoppingListRepository
         }
     }
 

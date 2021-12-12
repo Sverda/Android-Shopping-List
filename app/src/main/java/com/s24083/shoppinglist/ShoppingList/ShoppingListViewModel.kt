@@ -5,9 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.s24083.shoppinglist.entities.ShoppingItem
-import com.s24083.shoppinglist.repositories.ShoppingListFirebaseRepository
+import com.s24083.shoppinglist.repositories.ShoppingListRepository
 
-class ShoppingListViewModel(private val repository: ShoppingListFirebaseRepository)
+class ShoppingListViewModel(private val repository: ShoppingListRepository)
     : ViewModel() {
     val allItems: MutableLiveData<MutableList<ShoppingItem>> = repository.getItems()
 
@@ -31,7 +31,7 @@ class ShoppingListViewModelFactory(private val context: Context) : ViewModelProv
         if (modelClass.isAssignableFrom(ShoppingListViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
             return ShoppingListViewModel(
-                ShoppingListFirebaseRepository.getInstance()
+                ShoppingListRepository.getInstance()
             ) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")

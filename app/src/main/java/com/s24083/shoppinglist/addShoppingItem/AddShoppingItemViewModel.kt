@@ -2,12 +2,12 @@ package com.s24083.shoppinglist.addShoppingItem
 
 import android.content.Context
 import androidx.lifecycle.*
-import com.s24083.shoppinglist.repositories.ShoppingListFirebaseRepository
+import com.s24083.shoppinglist.repositories.ShoppingListRepository
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 
 class AddShoppingItemViewModel(
-    private val repository: ShoppingListFirebaseRepository,
+    private val repository: ShoppingListRepository,
     private val shoppingItemId: Int?
 )
     : ViewModel() {
@@ -44,7 +44,7 @@ class AddShoppingItemViewModelFactory(
         if (modelClass.isAssignableFrom(AddShoppingItemViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")
             return AddShoppingItemViewModel(
-                ShoppingListFirebaseRepository.getInstance(),
+                ShoppingListRepository.getInstance(),
                 shoppingItemId
             ) as T
         }
