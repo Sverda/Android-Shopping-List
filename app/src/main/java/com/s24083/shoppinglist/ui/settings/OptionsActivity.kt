@@ -1,4 +1,4 @@
-package com.s24083.shoppinglist.Settings
+package com.s24083.shoppinglist.ui.settings
 
 import android.os.Bundle
 import android.view.View

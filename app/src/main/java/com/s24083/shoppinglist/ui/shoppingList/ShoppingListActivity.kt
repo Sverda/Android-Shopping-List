@@ -1,4 +1,4 @@
-package com.s24083.shoppinglist.ShoppingList
+package com.s24083.shoppinglist.ui.shoppingList
 
 import android.app.Activity
 import android.content.Intent
@@ -9,7 +9,7 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.s24083.shoppinglist.R
-import com.s24083.shoppinglist.addShoppingItem.AddShoppingItemActivity
+import com.s24083.shoppinglist.ui.addShoppingItem.AddShoppingItemActivity
 import com.s24083.shoppinglist.data.model.ShoppingItem
 import com.s24083.shoppinglist.receivers.AddItemBroadcastReceiver
 

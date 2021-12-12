@@ -20,20 +20,20 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.main.MainActivity"
             android:exported="false"/>
         <activity
-            android:name=".Settings.OptionsActivity"
+            android:name="com.s24083.shoppinglist.ui.settings.OptionsActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".ui.main.MainActivity" />
         <activity
-            android:name=".ShoppingList.ShoppingListActivity"
+            android:name="com.s24083.shoppinglist.ui.shoppingList.ShoppingListActivity"
             android:exported="false"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".ui.main.MainActivity" />
         <activity
-            android:name=".addShoppingItem.AddShoppingItemActivity"
+            android:name="com.s24083.shoppinglist.ui.addShoppingItem.AddShoppingItemActivity"
             android:exported="true"
-            android:parentActivityName=".ShoppingList.ShoppingListActivity">
+            android:parentActivityName="com.s24083.shoppinglist.ui.shoppingList.ShoppingListActivity">
             <intent-filter>
                 <action android:name="com.s24083.shoppinglist.ITEM_ADDED_RESPONSE" />
             </intent-filter>

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".ui.main.MainActivity"
     android:background="@color/light_gray">
 
     <LinearLayout
@@ -15,18 +15,26 @@
         android:padding="50dp">
         <Button
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="180dp"
             android:text="Go to list"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="20dp"
             style="@style/AppTheme.Button"
             android:onClick="goToList"
             />
         <Button
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="180dp"
             android:text="Go to settings"
+            android:layout_marginBottom="20dp"
             style="@style/AppTheme.Button"
             android:onClick="goToSettings"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:text="Logout"
+            style="@style/AppTheme.Button"
+            android:onClick="logout"
             />
     </LinearLayout>
 

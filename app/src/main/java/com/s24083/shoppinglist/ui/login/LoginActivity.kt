@@ -5,7 +5,6 @@ import android.content.Intent
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
@@ -14,14 +13,12 @@ import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
-import com.s24083.shoppinglist.MainActivity
 import com.s24083.shoppinglist.databinding.ActivityLoginBinding
 
 import com.s24083.shoppinglist.R
-import com.s24083.shoppinglist.ShoppingList.ShoppingListActivity
+import com.s24083.shoppinglist.ui.main.MainActivity
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
 class LoginActivity : AppCompatActivity() {
 

@@ -1,16 +1,10 @@
-package com.s24083.shoppinglist.addShoppingItem
+package com.s24083.shoppinglist.ui.addShoppingItem
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.AttributeSet
-import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.button.MaterialButton
-import com.google.android.material.textfield.TextInputEditText
-import com.s24083.shoppinglist.R
 import com.s24083.shoppinglist.databinding.ActivityAddShoppingItemBinding
 
 class AddShoppingItemActivity : AppCompatActivity() {

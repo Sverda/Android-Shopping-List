@@ -5,13 +5,13 @@
     <data>
         <variable
             name="vm"
-            type="com.s24083.shoppinglist.addShoppingItem.AddShoppingItemViewModel"/>
+            type="com.s24083.shoppinglist.ui.addShoppingItem.AddShoppingItemViewModel"/>
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".addShoppingItem.AddShoppingItemActivity"
+        tools:context=".ui.addShoppingItem.AddShoppingItemActivity"
         android:background="@color/light_gray"
         android:orientation="vertical"
         android:paddingLeft="16dp"

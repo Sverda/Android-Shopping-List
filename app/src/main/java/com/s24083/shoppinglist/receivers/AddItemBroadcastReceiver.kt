@@ -3,8 +3,7 @@ package com.s24083.shoppinglist.receivers
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.widget.Toast
-import com.s24083.shoppinglist.addShoppingItem.AddShoppingItemActivity
+import com.s24083.shoppinglist.ui.addShoppingItem.AddShoppingItemActivity
 
 private const val TAG = "AddItemBroadcastReceiver"
 

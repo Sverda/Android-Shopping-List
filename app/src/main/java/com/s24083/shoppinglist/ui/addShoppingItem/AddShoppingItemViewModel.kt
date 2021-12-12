@@ -1,4 +1,4 @@
-package com.s24083.shoppinglist.addShoppingItem
+package com.s24083.shoppinglist.ui.addShoppingItem
 
 import android.content.Context
 import androidx.lifecycle.*

@@ -1,4 +1,4 @@
-package com.s24083.shoppinglist.ShoppingList
+package com.s24083.shoppinglist.ui.shoppingList
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
