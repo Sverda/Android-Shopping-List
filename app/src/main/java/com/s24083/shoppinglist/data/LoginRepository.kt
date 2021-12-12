@@ -1,6 +1,7 @@
 package com.s24083.shoppinglist.data
 
 import com.s24083.shoppinglist.data.model.LoggedInUser
+import kotlinx.coroutines.coroutineScope
 
 /**
  * Class that requests authentication and user information from the remote data source and
@@ -27,15 +28,13 @@ class LoginRepository(val dataSource: LoginDataSource) {
         dataSource.logout()
     }
 
-    fun login(username: String, password: String): Result<LoggedInUser> {
-        // handle login
+    suspend fun login(username: String, password: String): Result<LoggedInUser> = coroutineScope {
         val result = dataSource.login(username, password)
-
         if (result is Result.Success) {
             setLoggedInUser(result.data)
         }
 
-        return result
+        return@coroutineScope result
     }
 
     private fun setLoggedInUser(loggedInUser: LoggedInUser) {

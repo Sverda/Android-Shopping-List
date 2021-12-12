@@ -1,13 +1,13 @@
 package com.s24083.shoppinglist.ui.login
 
+import android.util.Patterns
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import android.util.Patterns
+import com.s24083.shoppinglist.R
 import com.s24083.shoppinglist.data.LoginRepository
 import com.s24083.shoppinglist.data.Result
-
-import com.s24083.shoppinglist.R
+import kotlinx.coroutines.coroutineScope
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
@@ -17,15 +17,14 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
     private val _loginResult = MutableLiveData<LoginResult>()
     val loginResult: LiveData<LoginResult> = _loginResult
 
-    fun login(username: String, password: String) {
+    suspend fun login(username: String, password: String) = coroutineScope {
         // can be launched in a separate asynchronous job
         val result = loginRepository.login(username, password)
-
         if (result is Result.Success) {
             _loginResult.value =
                 LoginResult(success = LoggedInUserView(displayName = result.data.displayName))
         } else {
-            _loginResult.value = LoginResult(error = R.string.login_failed)
+            _loginResult.value = LoginResult(error = "login failed: $result")
         }
     }
 
