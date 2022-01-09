@@ -6,9 +6,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import com.s24083.shoppinglist.R
+import com.s24083.shoppinglist.data.LoginCache
 import com.s24083.shoppinglist.ui.login.LoginActivity
-import com.s24083.shoppinglist.ui.login.LoginViewModel
-import com.s24083.shoppinglist.ui.login.LoginViewModelFactory
 import com.s24083.shoppinglist.ui.settings.OptionsActivity
 import com.s24083.shoppinglist.ui.shoppingList.ShoppingListActivity
 
@@ -35,6 +34,8 @@ class MainActivity : AppCompatActivity() {
 
     fun logout(view: View){
         viewModel.logout()
+        val cache = LoginCache(applicationContext)
+        cache.Clean()
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
         finish()

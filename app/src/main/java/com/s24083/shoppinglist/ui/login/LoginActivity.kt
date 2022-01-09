@@ -9,8 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.view.Window
-import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.Toast
@@ -18,6 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import com.s24083.shoppinglist.databinding.ActivityLoginBinding
 
 import com.s24083.shoppinglist.R
+import com.s24083.shoppinglist.data.LoginCache
 import com.s24083.shoppinglist.ui.main.MainActivity
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
@@ -38,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
         val login = binding.login
         val loading = binding.loading
 
-        loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
+        loginViewModel = ViewModelProvider(this, LoginViewModelFactory(application))
             .get(LoginViewModel::class.java)
 
         loginViewModel.loginFormState.observe(this@LoginActivity, Observer {
@@ -102,6 +101,16 @@ class LoginActivity : AppCompatActivity() {
                     login()
                 }
             }
+        }
+
+        autologin()
+    }
+
+    private fun autologin() {
+        val cache = LoginCache(applicationContext)
+        val user = cache.Retrive()
+        user?.let {
+            updateUiWithUser(LoggedInUserView(it.displayName))
         }
     }
 

@@ -1,15 +1,21 @@
 package com.s24083.shoppinglist.ui.login
 
+import android.app.Application
 import android.util.Patterns
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.s24083.shoppinglist.R
+import com.s24083.shoppinglist.data.LoginCache
 import com.s24083.shoppinglist.data.LoginRepository
 import com.s24083.shoppinglist.data.Result
 import kotlinx.coroutines.coroutineScope
 
-class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
+class LoginViewModel(application: Application, private val loginRepository: LoginRepository)
+    : AndroidViewModel(application) {
+
+    private val context = getApplication<Application>().applicationContext
+    private val cache = LoginCache(context)
 
     private val _loginForm = MutableLiveData<LoginFormState>()
     val loginFormState: LiveData<LoginFormState> = _loginForm
@@ -21,6 +27,7 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
         // can be launched in a separate asynchronous job
         val result = loginRepository.login(username, password)
         if (result is Result.Success) {
+            cache.Cache(result.data)
             _loginResult.value =
                 LoginResult(success = LoggedInUserView(displayName = result.data.displayName))
         } else {
