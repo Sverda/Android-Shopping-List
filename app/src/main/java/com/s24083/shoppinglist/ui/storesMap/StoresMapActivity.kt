@@ -5,6 +5,8 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -12,12 +14,16 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.s24083.shoppinglist.R
+import com.s24083.shoppinglist.data.StoresRepository
+import com.s24083.shoppinglist.data.model.Store
 import com.s24083.shoppinglist.databinding.ActivityStoresMapBinding
 
 class StoresMapActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityStoresMapBinding
+    private lateinit var repo: StoresRepository
+    private lateinit var stores: MutableLiveData<MutableList<Store>>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +35,12 @@ class StoresMapActivity : AppCompatActivity(), OnMapReadyCallback {
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        repo = StoresRepository.getInstance()
+        stores = repo.getItems()
+        stores.observe(this@StoresMapActivity, Observer {
+            addMarkers(it!!)
+        })
     }
 
     /**
@@ -42,14 +54,6 @@ class StoresMapActivity : AppCompatActivity(), OnMapReadyCallback {
      */
     override fun onMapReady(googleMap: GoogleMap) {
         mMap = googleMap
-
-        val warsaw = LatLng(52.2, 21.0)
-        val markerOptions = MarkerOptions()
-        markerOptions.position(warsaw)
-        markerOptions.title("Warsaw")
-        markerOptions.snippet("Capital of Poland")
-        mMap.addMarker(markerOptions)
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(warsaw))
 
         val perms =
             arrayOf(
@@ -69,5 +73,21 @@ class StoresMapActivity : AppCompatActivity(), OnMapReadyCallback {
             requestPermissions(perms, requestCode)
         }
         mMap.isMyLocationEnabled = true
+    }
+
+    private fun addMarkers(localStores: MutableList<Store>) {
+        var lastMarker = LatLng(52.2, 21.0)
+        localStores.forEach { store ->
+            val location = LatLng(
+                store.location.split(",")[0].toDouble(),
+                store.location.split(",")[1].toDouble())
+            val markerOptions = MarkerOptions()
+            markerOptions.position(location)
+            markerOptions.title(store.name)
+            markerOptions.snippet(store.description)
+            mMap.addMarker(markerOptions)
+            lastMarker = location
+        }
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(lastMarker))
     }
 }
