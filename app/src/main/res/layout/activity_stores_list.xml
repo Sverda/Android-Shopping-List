@@ -25,6 +25,15 @@
             app:layoutManager="LinearLayoutManager"/>
     </LinearLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/showMap"
+        app:layout_constraintBottom_toTopOf="@id/addItem"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:src="@drawable/ic_baseline_map_24"
+        android:onClick="showMap"/>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/addItem"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,5 +41,5 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:src="@drawable/ic_baseline_add_24"
-        android:onClick="fabOnClick"/>
+        android:onClick="addStore"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

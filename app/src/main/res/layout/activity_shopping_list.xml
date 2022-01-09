@@ -32,5 +32,5 @@
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:src="@drawable/ic_baseline_add_24"
-        android:onClick="fabOnClick"/>
+        android:onClick="addStore"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,6 +15,7 @@ import com.s24083.shoppinglist.receivers.AddItemBroadcastReceiver
 import com.s24083.shoppinglist.ui.addShoppingItem.AddShoppingItemActivity
 import com.s24083.shoppinglist.ui.addStore.AddStoreActivity
 import com.s24083.shoppinglist.ui.shoppingList.ShoppingListAdapter
+import com.s24083.shoppinglist.ui.storesMap.StoresMapActivity
 
 class StoresListActivity : AppCompatActivity() {
 
@@ -90,7 +91,12 @@ class StoresListActivity : AppCompatActivity() {
         recyclerView?.adapter?.notifyItemRemoved(item.id)
     }
 
-    fun fabOnClick(view: android.view.View) {
+    fun showMap(view: android.view.View) {
+        val intent = Intent(this, StoresMapActivity::class.java)
+        intentLauncher.launch(intent)
+    }
+
+    fun addStore(view: android.view.View) {
         val intent = Intent(this, AddStoreActivity::class.java)
         intentLauncher.launch(intent)
     }
