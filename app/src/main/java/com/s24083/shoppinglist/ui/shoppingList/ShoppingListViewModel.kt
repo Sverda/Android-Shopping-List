@@ -13,15 +13,12 @@ class ShoppingListViewModel(private val repository: ShoppingListRepository)
 
     fun insert(item: ShoppingItem){
         repository.insert(item)
-//        allItems.postValue(repository.getItems())
     }
     fun update(item: ShoppingItem){
         repository.update(item)
-//        allItems.postValue(repository.allItems)
     }
     fun delete(item: ShoppingItem){
         repository.delete(item)
-//        allItems.postValue(repository.allItems)
     }
 }
 

@@ -16,12 +16,15 @@
         <entry key="..\:/code/android/Android-Shopping-List/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.5825641025641025" />
         <entry key="..\:/code/android/Android-Shopping-List/app/src/main/res/drawable/round_outline.xml" value="0.5825641025641025" />
         <entry key="..\:/code/android/Android-Shopping-List/app/src/main/res/drawable/round_outline_gray.xml" value="0.5825641025641025" />
-        <entry key="..\:/code/android/Android-Shopping-List/app/src/main/res/layout/activity_add_shopping_item.xml" value="0.5755208333333334" />
+        <entry key="..\:/code/android/Android-Shopping-List/app/src/main/res/layout/activity_add_shopping_item.xml" value="0.1" />
+        <entry key="..\:/code/android/Android-Shopping-List/app/src/main/res/layout/activity_add_store.xml" value="0.1" />
         <entry key="..\:/code/android/Android-Shopping-List/app/src/main/res/layout/activity_login.xml" value="0.27077001013171226" />
-        <entry key="..\:/code/android/Android-Shopping-List/app/src/main/res/layout/activity_main.xml" value="0.3059581320450886" />
+        <entry key="..\:/code/android/Android-Shopping-List/app/src/main/res/layout/activity_main.xml" value="0.4466666666666667" />
         <entry key="..\:/code/android/Android-Shopping-List/app/src/main/res/layout/activity_options.xml" value="0.5" />
-        <entry key="..\:/code/android/Android-Shopping-List/app/src/main/res/layout/activity_shopping_list.xml" value="0.5755208333333334" />
-        <entry key="..\:/code/android/Android-Shopping-List/app/src/main/res/layout/shopping_item.xml" value="0.5755208333333334" />
+        <entry key="..\:/code/android/Android-Shopping-List/app/src/main/res/layout/activity_shopping_list.xml" value="0.4748700173310225" />
+        <entry key="..\:/code/android/Android-Shopping-List/app/src/main/res/layout/activity_stores_list.xml" value="0.1" />
+        <entry key="..\:/code/android/Android-Shopping-List/app/src/main/res/layout/shopping_item.xml" value="0.44122383252818037" />
+        <entry key="..\:/code/android/Android-Shopping-List/app/src/main/res/layout/store_item.xml" value="0.1" />
       </map>
     </option>
   </component>

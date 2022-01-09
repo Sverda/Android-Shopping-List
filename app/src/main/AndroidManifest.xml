@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.s24083.shoppinglist">
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -16,29 +17,37 @@
             android:label="@string/title_activity_login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".ui.main.MainActivity"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
-            android:name="com.s24083.shoppinglist.ui.settings.OptionsActivity"
+            android:name=".ui.settings.OptionsActivity"
             android:exported="false"
             android:parentActivityName=".ui.main.MainActivity" />
         <activity
-            android:name="com.s24083.shoppinglist.ui.shoppingList.ShoppingListActivity"
+            android:name=".ui.shoppingList.ShoppingListActivity"
             android:exported="false"
             android:parentActivityName=".ui.main.MainActivity" />
         <activity
-            android:name="com.s24083.shoppinglist.ui.addShoppingItem.AddShoppingItemActivity"
+            android:name=".ui.addShoppingItem.AddShoppingItemActivity"
             android:exported="true"
-            android:parentActivityName="com.s24083.shoppinglist.ui.shoppingList.ShoppingListActivity">
+            android:parentActivityName=".ui.shoppingList.ShoppingListActivity">
             <intent-filter>
                 <action android:name="com.s24083.shoppinglist.ITEM_ADDED_RESPONSE" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.storesList.StoresListActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.main.MainActivity" />
+        <activity
+            android:name=".ui.addStore.AddStoreActivity"
+            android:exported="true"
+            android:parentActivityName=".ui.storesList.StoresListActivity"/>
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

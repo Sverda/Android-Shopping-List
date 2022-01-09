@@ -10,6 +10,7 @@ import com.s24083.shoppinglist.data.LoginCache
 import com.s24083.shoppinglist.ui.login.LoginActivity
 import com.s24083.shoppinglist.ui.settings.OptionsActivity
 import com.s24083.shoppinglist.ui.shoppingList.ShoppingListActivity
+import com.s24083.shoppinglist.ui.storesList.StoresListActivity
 
 class MainActivity : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
@@ -22,8 +23,13 @@ class MainActivity : AppCompatActivity() {
             .get(MainViewModel::class.java)
     }
 
-    fun goToList(view: View){
+    fun goToShoppingList(view: View){
         val intent = Intent(this, ShoppingListActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun goToStoresList(view: View){
+        val intent = Intent(this, StoresListActivity::class.java)
         startActivity(intent)
     }
 
