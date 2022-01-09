@@ -29,6 +29,7 @@ class StoresListAdapter(val context : Context,
         private val nameTextView: TextView = itemView.findViewById(R.id.item_name)
         private val descriptionTextView: TextView = itemView.findViewById(R.id.item_description)
         private val radiusTextView: TextView = itemView.findViewById(R.id.item_radius)
+        private val locationTextView: TextView = itemView.findViewById(R.id.item_location)
         private val editButton: ImageButton = itemView.findViewById(R.id.item_edit)
         private val deleteButton: ImageButton = itemView.findViewById(R.id.item_delete)
         private val scaleUp: Animation = AnimationUtils.loadAnimation(context, R.anim.scale_up)
@@ -42,6 +43,7 @@ class StoresListAdapter(val context : Context,
             nameTextView.text = "${item.name}"
             descriptionTextView.text = "${item.description}"
             radiusTextView.text = "${item.radius}m"
+            locationTextView.text = "${item.location}"
 
             val sp = context.getSharedPreferences("1", AppCompatActivity.MODE_PRIVATE)
             val detailsKey = itemView.resources.getString(R.string.settingsShowDetails)
@@ -49,6 +51,7 @@ class StoresListAdapter(val context : Context,
             if (!detailsValue){
                 descriptionTextView.visibility = View.GONE
                 radiusTextView.visibility = View.GONE
+                locationTextView.visibility = View.GONE
             }
 
             val sizeKey = itemView.resources.getString(R.string.settingsTitleFontSize)

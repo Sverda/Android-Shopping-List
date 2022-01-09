@@ -15,6 +15,7 @@ class AddStoreViewModel(
     val name : MutableLiveData<String> = MediatorLiveData<String>()
     val description : MutableLiveData<String> = MediatorLiveData<String>()
     val radius : MutableLiveData<Int> = MediatorLiveData<Int>()
+    val location : MutableLiveData<String> = MediatorLiveData<String>()
 
     init {
         viewModelScope.launch {
@@ -24,12 +25,14 @@ class AddStoreViewModel(
 
     private suspend fun load() = coroutineScope {
         println("in load with id of $storeId")
+        location.value = "Loading..."
         storeId?.let { id ->
             val item = repository.getItem(id)
             println("item loaded ${item?.name}")
             name.value = item?.name
             description.value = item?.description
             radius.value = item?.radius
+            location.value = item?.location
         }
     }
 }

@@ -32,9 +32,15 @@ class StoresListActivity : AppCompatActivity() {
                 val name = result.data?.getStringExtra("name")
                 val description = result.data?.getStringExtra("description")
                 val radius = result.data?.getIntExtra("radius", 0)
+                val location = result.data?.getStringExtra("location")
                 if (existingId == -1) {
                     val maxId = listViewModel.allItems.value?.maxByOrNull { i -> i.id }?.id ?: 0
-                    val item = Store(maxId + 1 , name ?: "", description ?: "", radius ?: 0)
+                    val item = Store(
+                        maxId + 1 ,
+                        name ?: "",
+                        description ?: "",
+                        radius ?: 0,
+                        location ?: "")
                     listViewModel.insert(item)
                     broadcastItemCreation(item)
                 }
@@ -44,7 +50,8 @@ class StoresListActivity : AppCompatActivity() {
                         existingId ?: throw Exception("invalid id"),
                         name ?: "",
                         description ?: "",
-                        radius ?: 0)
+                        radius ?: 0,
+                        location ?: "")
                     listViewModel.update(item)
                     recyclerView?.recycledViewPool?.clear()
                     recyclerView?.adapter?.notifyItemChanged(item.id)

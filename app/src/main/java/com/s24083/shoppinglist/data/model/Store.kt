@@ -7,5 +7,6 @@ data class Store(
     val id: Int = 0,
     val name: String = "",
     val description: String = "",
-    val radius: Int = 0
+    val radius: Int = 0,
+    val location: String = ""
 )
