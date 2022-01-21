@@ -16,9 +16,9 @@ class RedirectWidget : AppWidgetProvider() {
         appWidgetIds: IntArray
     ) {
         // There may be multiple widgets active, so update all of them
-        for (appWidgetId in appWidgetIds) {
-            updateAppWidget(context, appWidgetManager, appWidgetId)
-        }
+//        for (appWidgetId in appWidgetIds) {
+//            updateAppWidget(context, appWidgetManager, appWidgetId)
+//        }
     }
 
     override fun onEnabled(context: Context) {
@@ -35,10 +35,8 @@ internal fun updateAppWidget(
     appWidgetManager: AppWidgetManager,
     appWidgetId: Int
 ) {
-    val widgetText = context.getString(R.string.appwidget_text)
     // Construct the RemoteViews object
     val views = RemoteViews(context.packageName, R.layout.redirect_widget)
-    views.setTextViewText(R.id.appwidget_text, widgetText)
 
     // Instruct the widget manager to update the widget
     appWidgetManager.updateAppWidget(appWidgetId, views)

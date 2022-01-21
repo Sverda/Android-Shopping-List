@@ -23,4 +23,13 @@
     </style>
 
     <style name="Theme.ShoppingList.AppWidgetContainer" parent="Theme.ShoppingList.AppWidgetContainerParent" />
+
+    <style name="Theme.ShoppingList.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.ShoppingList.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.ShoppingList.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

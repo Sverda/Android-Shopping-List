@@ -2,18 +2,19 @@
     style="@style/Widget.ShoppingList.AppWidget.Container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/Theme.ShoppingList.AppWidgetContainer">
+    android:theme="@style/Theme.ShoppingList.AppWidgetContainer"
+    android:padding="8dp">
 
     <TextView
-        android:id="@+id/appwidget_text"
-        style="@style/Widget.ShoppingList.AppWidget.InnerView"
-        android:layout_width="wrap_content"
+        android:id="@+id/widget_url"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_margin="8dp"
-        android:contentDescription="@string/appwidget_text"
-        android:text="@string/appwidget_text"
-        android:textSize="24sp"
-        android:textStyle="bold|italic" />
+        android:layout_marginHorizontal="15dp"
+        android:textAlignment="center"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/widget_url"
+        android:layout_marginHorizontal="30dp"
+        android:text="Redirect"/>
 </RelativeLayout>

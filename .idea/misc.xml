@@ -12,6 +12,8 @@
         <entry key="..\:/Users/damian.ubowski/AndroidStudioProjects/ShoppingList/app/src/main/res/layout/activity_product_list.xml" value="0.3875" />
         <entry key="..\:/Users/damian.ubowski/AndroidStudioProjects/ShoppingList/app/src/main/res/layout/activity_shopping_list.xml" value="0.3875" />
         <entry key="..\:/Users/damian.ubowski/AndroidStudioProjects/ShoppingList/app/src/main/res/layout/shopping_item.xml" value="0.3875" />
+        <entry key="..\:/code/android/Android-Shopping-List/app/src/main/res/drawable-v21/app_widget_background.xml" value="0.5037037037037037" />
+        <entry key="..\:/code/android/Android-Shopping-List/app/src/main/res/drawable-v21/app_widget_inner_view_background.xml" value="0.5037037037037037" />
         <entry key="..\:/code/android/Android-Shopping-List/app/src/main/res/drawable/delete_icon.xml" value="0.5825641025641025" />
         <entry key="..\:/code/android/Android-Shopping-List/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.5825641025641025" />
         <entry key="..\:/code/android/Android-Shopping-List/app/src/main/res/drawable/round_outline.xml" value="0.5825641025641025" />
@@ -21,6 +23,7 @@
         <entry key="..\:/code/android/Android-Shopping-List/app/src/main/res/layout/activity_login.xml" value="0.27077001013171226" />
         <entry key="..\:/code/android/Android-Shopping-List/app/src/main/res/layout/activity_main.xml" value="0.4466666666666667" />
         <entry key="..\:/code/android/Android-Shopping-List/app/src/main/res/layout/activity_options.xml" value="0.5" />
+        <entry key="..\:/code/android/Android-Shopping-List/app/src/main/res/layout/activity_redirect_widget_config.xml" value="0.46153846153846156" />
         <entry key="..\:/code/android/Android-Shopping-List/app/src/main/res/layout/activity_shopping_list.xml" value="0.1" />
         <entry key="..\:/code/android/Android-Shopping-List/app/src/main/res/layout/activity_stores_list.xml" value="0.4466666666666667" />
         <entry key="..\:/code/android/Android-Shopping-List/app/src/main/res/layout/redirect_widget.xml" value="0.4466666666666667" />
