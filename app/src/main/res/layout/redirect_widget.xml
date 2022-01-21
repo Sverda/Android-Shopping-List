@@ -2,7 +2,7 @@
     style="@style/Widget.ShoppingList.AppWidget.Container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:theme="@style/Theme.ShoppingList.AppWidgetContainer"
+    android:theme="@style/Theme.ShoppingList"
     android:padding="8dp">
 
     <TextView
@@ -16,5 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/widget_url"
         android:layout_marginHorizontal="30dp"
+        android:backgroundTint="@color/blue_500"
+        android:textColor="@color/white"
         android:text="Redirect"/>
 </RelativeLayout>
