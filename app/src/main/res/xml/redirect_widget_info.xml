@@ -9,8 +9,8 @@
     android:resizeMode="horizontal|vertical"
     android:targetCellWidth="5"
     android:targetCellHeight="1"
-    android:updatePeriodMillis="86400000"
+    android:updatePeriodMillis="1800000"
     android:widgetCategory="home_screen"
     android:configure="com.s24083.shoppinglist.ui.redirectWidget.RedirectWidgetConfigActivity"
-    android:widgetFeatures="reconfigurable">
+    android:widgetFeatures="reconfigurable|configuration_optional">
 </appwidget-provider>

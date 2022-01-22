@@ -1,9 +1,11 @@
 package com.s24083.shoppinglist.ui.main
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.s24083.shoppinglist.R
 import com.s24083.shoppinglist.data.LoginCache
@@ -21,6 +23,12 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this, MainViewModelFactory())
             .get(MainViewModel::class.java)
+
+        val urlurl = intent.getStringExtra("url")
+        urlurl?.let { url ->
+            val actionIntent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            startActivity(actionIntent)
+        }
     }
 
     fun goToShoppingList(view: View){

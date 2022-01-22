@@ -1,10 +1,17 @@
 package com.s24083.shoppinglist.ui.redirectWidget
 
+import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.os.Bundle
 import android.widget.RemoteViews
+import android.widget.Toast
 import com.s24083.shoppinglist.R
+import com.s24083.shoppinglist.ui.addStore.AddStoreActivity
+import com.s24083.shoppinglist.ui.main.MainActivity
 
 /**
  * Implementation of App Widget functionality.
@@ -19,14 +26,6 @@ class RedirectWidget : AppWidgetProvider() {
 //        for (appWidgetId in appWidgetIds) {
 //            updateAppWidget(context, appWidgetManager, appWidgetId)
 //        }
-    }
-
-    override fun onEnabled(context: Context) {
-        // Enter relevant functionality for when the first widget is created
-    }
-
-    override fun onDisabled(context: Context) {
-        // Enter relevant functionality for when the last widget is disabled
     }
 }
 

@@ -12,6 +12,7 @@
         android:layout_marginHorizontal="15dp"
         android:textAlignment="center"/>
     <Button
+        android:id="@+id/widget_redirect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/widget_url"
