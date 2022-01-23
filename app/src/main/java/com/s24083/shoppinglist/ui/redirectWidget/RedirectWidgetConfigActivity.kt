@@ -4,29 +4,29 @@ import android.app.Activity
 import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.content.Intent
-import android.net.Uri
+import android.graphics.BitmapFactory
+import android.media.MediaPlayer
 import android.os.Bundle
+import android.view.View
+import android.widget.RadioButton
 import android.widget.RemoteViews
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.drawable.toBitmap
 import com.s24083.shoppinglist.R
 import com.s24083.shoppinglist.databinding.ActivityRedirectWidgetConfigBinding
-import com.s24083.shoppinglist.ui.addStore.AddStoreActivity
 import com.s24083.shoppinglist.ui.main.MainActivity
-import java.util.*
-import android.graphics.BitmapFactory
-
-import android.graphics.Bitmap
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import java.net.HttpURLConnection
 import java.net.URL
+import java.util.*
 
 
 class RedirectWidgetConfigActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRedirectWidgetConfigBinding
+    private var mediaPlayer = MediaPlayer()
+    private var currentlyPlayingTitle = "Scott Holmes Music - Lasting Memories.mp3"
 
     var appWidgetId = AppWidgetManager.INVALID_APPWIDGET_ID
 
@@ -37,6 +37,20 @@ class RedirectWidgetConfigActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.widgetConfigRandomImage.setOnClickListener {
             drawRandomImage()
+        }
+        binding.widgetConfigSoundsGroup.setOnCheckedChangeListener { group, checkedId ->
+            mediaPlayer.stop()
+            mediaPlayer.reset()
+            val radioButton: RadioButton = group.findViewById(checkedId)
+            currentlyPlayingTitle = radioButton.text.toString() + ".mp3"
+            val afd = assets.openFd(currentlyPlayingTitle)
+            mediaPlayer.setDataSource(afd.fileDescriptor, afd.startOffset, afd.length);
+        }
+        binding.widgetConfigPlay.setOnClickListener {
+            playSound()
+        }
+        binding.widgetConfigStop.setOnClickListener {
+            stopSound()
         }
         binding.widgetConfigDone.setOnClickListener {
             done()
@@ -56,6 +70,9 @@ class RedirectWidgetConfigActivity : AppCompatActivity() {
             cancel()
             return
         }
+
+        val afd = assets.openFd(currentlyPlayingTitle)
+        mediaPlayer.setDataSource(afd.fileDescriptor, afd.startOffset, afd.length);
     }
 
     private fun drawRandomImage() {
@@ -65,6 +82,19 @@ class RedirectWidgetConfigActivity : AppCompatActivity() {
             launch(Dispatchers.Main) {
                 binding.widgetConfigImage.setImageBitmap(bmp)
             }
+        }
+    }
+
+    private fun playSound() {
+        if (!mediaPlayer.isPlaying){
+            mediaPlayer.prepare();
+            mediaPlayer.start()
+        }
+    }
+
+    private fun stopSound() {
+        if (mediaPlayer.isPlaying) {
+            mediaPlayer.stop()
         }
     }
 
@@ -88,6 +118,7 @@ class RedirectWidgetConfigActivity : AppCompatActivity() {
                 intent,
                 PendingIntent.FLAG_CANCEL_CURRENT)
             views.setOnClickPendingIntent(R.id.widget_redirect, pendingIntent);
+            views.setTextViewText(R.id.widget_ambient_title, currentlyPlayingTitle)
         }
         binding.widgetConfigImage.drawable?.let { drawable ->
             views.setImageViewBitmap(R.id.widget_background, drawable.toBitmap())

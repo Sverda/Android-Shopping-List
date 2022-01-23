@@ -1,22 +1,17 @@
 package com.s24083.shoppinglist.ui.redirectWidget
 
-import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.appwidget.AppWidgetProvider
 import android.content.Context
-import android.content.Intent
-import android.net.Uri
-import android.os.Bundle
+import android.media.MediaPlayer
 import android.widget.RemoteViews
-import android.widget.Toast
 import com.s24083.shoppinglist.R
-import com.s24083.shoppinglist.ui.addStore.AddStoreActivity
-import com.s24083.shoppinglist.ui.main.MainActivity
 
 /**
  * Implementation of App Widget functionality.
  */
 class RedirectWidget : AppWidgetProvider() {
+
     override fun onUpdate(
         context: Context,
         appWidgetManager: AppWidgetManager,
