@@ -3,21 +3,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:theme="@style/Theme.ShoppingList"
-    android:padding="8dp">
+    android:layout_margin="0dp"
+    android:padding="0dp">
 
-    <TextView
-        android:id="@+id/widget_url"
+    <ImageView
+        android:id="@+id/widget_background"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="15dp"
-        android:textAlignment="center"/>
-    <Button
-        android:id="@+id/widget_redirect"
+        android:layout_height="match_parent"
+        android:src="@drawable/sample"
+        android:alpha="0.7"
+        android:scaleType="fitXY"/>
+
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/widget_url"
-        android:layout_marginHorizontal="30dp"
-        android:backgroundTint="@color/blue_500"
-        android:textColor="@color/white"
-        android:text="Redirect"/>
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/widget_url"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="15dp"
+            android:textAlignment="center"
+            android:text="www.google.pl" />
+        <Button
+            android:id="@+id/widget_redirect"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/widget_url"
+            android:layout_marginHorizontal="30dp"
+            android:backgroundTint="@color/blue_500"
+            android:textColor="@color/white"
+            android:text="Redirect"/>
+    </LinearLayout>
 </RelativeLayout>

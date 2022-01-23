@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.widget.RemoteViews
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.graphics.drawable.toBitmap
 import com.s24083.shoppinglist.R
 import com.s24083.shoppinglist.databinding.ActivityRedirectWidgetConfigBinding
 import com.s24083.shoppinglist.ui.addStore.AddStoreActivity
@@ -25,11 +26,12 @@ class RedirectWidgetConfigActivity : AppCompatActivity() {
 
         binding = ActivityRedirectWidgetConfigBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        binding.widgetConfigRandom.setOnClickListener {
+            drawRandomImage()
+        }
         binding.widgetConfigDone.setOnClickListener {
             done()
         }
-
         binding.widgetConfigCancel.setOnClickListener {
             cancel()
         }
@@ -45,6 +47,10 @@ class RedirectWidgetConfigActivity : AppCompatActivity() {
             cancel()
             return
         }
+    }
+
+    private fun drawRandomImage() {
+        TODO("Not yet implemented")
     }
 
     private fun done() {
@@ -67,6 +73,9 @@ class RedirectWidgetConfigActivity : AppCompatActivity() {
                 intent,
                 PendingIntent.FLAG_CANCEL_CURRENT)
             views.setOnClickPendingIntent(R.id.widget_redirect, pendingIntent);
+        }
+        binding.widgetConfigImage.drawable?.let { drawable ->
+            views.setImageViewBitmap(R.id.widget_background, drawable.toBitmap())
         }
 
         appWidgetManager.updateAppWidget(appWidgetId, views)
