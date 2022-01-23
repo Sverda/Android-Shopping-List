@@ -35,7 +35,7 @@ class RedirectWidgetConfigActivity : AppCompatActivity() {
 
         binding = ActivityRedirectWidgetConfigBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.widgetConfigRandom.setOnClickListener {
+        binding.widgetConfigRandomImage.setOnClickListener {
             drawRandomImage()
         }
         binding.widgetConfigDone.setOnClickListener {
