@@ -23,6 +23,7 @@
             android:layout_below="@id/widget_config_header"
             android:background="@drawable/round_outline"
             android:padding="10dp"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -41,6 +42,29 @@
                     android:layout_height="wrap_content"/>
 
             </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:text="Background image" />
+                <ImageView
+                    android:id="@+id/widget_config_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/sample"/>
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/widget_config_random"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Draw random" />
+            </LinearLayout>
 
         </LinearLayout>
 
