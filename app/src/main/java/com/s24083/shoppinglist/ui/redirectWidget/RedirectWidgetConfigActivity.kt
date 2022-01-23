@@ -14,6 +14,15 @@ import com.s24083.shoppinglist.databinding.ActivityRedirectWidgetConfigBinding
 import com.s24083.shoppinglist.ui.addStore.AddStoreActivity
 import com.s24083.shoppinglist.ui.main.MainActivity
 import java.util.*
+import android.graphics.BitmapFactory
+
+import android.graphics.Bitmap
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.net.HttpURLConnection
+import java.net.URL
+
 
 class RedirectWidgetConfigActivity : AppCompatActivity() {
 
@@ -50,7 +59,13 @@ class RedirectWidgetConfigActivity : AppCompatActivity() {
     }
 
     private fun drawRandomImage() {
-        TODO("Not yet implemented")
+        GlobalScope.launch(Dispatchers.IO) {
+            val url = URL("https://picsum.photos/650/160")
+            val bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream())
+            launch(Dispatchers.Main) {
+                binding.widgetConfigImage.setImageBitmap(bmp)
+            }
+        }
     }
 
     private fun done() {
